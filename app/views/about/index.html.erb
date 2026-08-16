@@ -1,3 +1,185 @@
-<div class="bg-blue-500">
-  <h1 class="font-bold text-4xl">About#index</h1>
+<div class="bg-gray-50 text-gray-900 min-h-screen py-10 px-4 sm:px-6 lg:px-8 font-sans">
+  <!-- Container principal com borda sutil e fundo branco moderno -->
+  <section class="relative mx-auto max-w-4xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm" aria-label="Identidade profissional">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+      <!-- Coluna da Foto -->
+      <div class="shrink-0 self-center sm:self-auto">
+        <!-- Container da foto com anel de destaque em gradiente Ruby -->
+        <div class="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-gray-100 p-0.5 bg-white shadow-inner">
+          <!-- Gradiente Ruby como placeholder caso não haja imagem -->
+          <div class="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-red-700 text-2xl font-semibold text-white">
+            <%= image_tag "a92f0b73-d98a-48f7-9f42-a8865a7e382e.jpg", class: "h-full w-full rounded-full object-cover", alt: "mauro" %>
+          </div>
+        </div>
+      </div>
+      <!-- Coluna do Nome e Handle -->
+      <div class="min-w-0 flex-1">
+        <div class="flex items-center gap-2">
+          <!-- Texto principal em cinza quase preto -->
+          <h1 class="truncate text-xl font-bold tracking-tight text-gray-950">
+            Mauro Biazutti
+          </h1>
+        </div>
+        <div class="flex items-center gap-1 text-sm text-gray-600">
+          <!-- Link com hover na cor Ruby (Rose) -->
+          <a href="https://bsky.app/profile/seuru.by" target="_blank" rel="noopener noreferrer" class="truncate hover:text-rose-600 transition-colors font-medium">
+            @seuru.by
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Zona B: Descrição e Localização -->
+    <div class="mt-5 space-y-1.5" data-testid="zone-b">
+      <!-- Texto de destaque em cinza escuro -->
+      <p class="text-sm font-medium text-gray-800">
+        Desenvolvedor Full Stack Ruby on Rails
+      </p>
+      <!-- Texto secundário em cinza médio -->
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Desenvolvedor de software focado em criar aplicações web escaláveis e eficientes.
+      </p>
+      <div class="mt-2.5 pt-2 border-t border-gray-100">
+        <div class="flex items-center gap-1.5 text-xs text-gray-500">
+          <!-- Ícone com cor Ruby suave -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="h-4 w-4 shrink-0 text-rose-500/80" aria-hidden="true">
+            <path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path>
+          </svg>
+          <span>
+            <span>Santos Dumont , </span>
+            <span>Minas Gerais , </span>
+            <%# <span aria-hidden="true">,</span> %>
+            <span>Brasil</span>
+            <span class="ml-1" role="img" aria-label="Brasil">🇧🇷</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Ações: Botões -->
+    <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100">
+      <!-- Botão Primário: Ruby (Rose) -->
+      <button type="button" class="inline-flex shrink-0 cursor-pointer items-center justify-center font-semibold transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 bg-rose-600 hover:bg-rose-700 text-white min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm shadow-sm shadow-rose-950/20">
+        <span>Seguir</span>
+      </button>
+      <!-- Botão Secundário: Cinza Suave -->
+      <button type="button" class="inline-flex shrink-0 cursor-pointer items-center justify-center font-medium transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-gray-300 border border-gray-200 bg-white hover:bg-gray-50 text-gray-800 min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="h-4 w-4 text-gray-500" aria-hidden="true">
+          <path d="M176,156a43.78,43.78,0,0,0-29.09,11L106.1,140.8a44.07,44.07,0,0,0,0-25.6L146.91,89a43.83,43.83,0,1,0-13-20.17L93.09,95a44,44,0,1,0,0,65.94L133.9,187.2A44,44,0,1,0,176,156Zm0-120a20,20,0,1,1-20,20A20,20,0,0,1,176,36ZM64,148a20,20,0,1,1,20-20A20,20,0,0,1,64,148Zm112,72a20,20,0,1,1,20-20A20,20,0,0,1,176,220Z"></path>
+        </svg>
+        <span>Compartilhar</span>
+      </button>
+    </div>
+  </section>
+  <div class="max-w-4xl mx-auto space-y-16">
+    <!-- Hero / Apresentação -->
+    <!-- Bio & Metodologia -->
+    <section class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 space-y-5">
+        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+          <!-- Detalhe em Vermelho Rubi -->
+          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+          Sobre Mim
+        </h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
+          <p>
+            Tenho foco no ecossistema Ruby, projetando APIs bem estruturadas, otimizando consultas a bancos de dados relacionais como <span class="text-gray-900 font-medium">PostgreSQL</span> e gerenciando fluxos assíncronos de alto desempenho.
+          </p>
+          <p>
+            Acredito em código limpo, testes automatizados e implantações ágeis. Atualmente exploro o ecossistema moderno do Rails 8, automação de contêineres com <span class="text-gray-900 font-medium">Docker e Kamal</span>, além de resolução de desafios algorítmicos.
+          </p>
+        </div>
+      </div>
+      <!-- Card Lateral de Destaque -->
+      <div class="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm space-y-4">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+          Atualmente
+        </h3>
+        <ul class="space-y-3.5 text-sm">
+          <li class="flex justify-between items-center border-b border-gray-100 pb-2.5">
+            <span class="text-gray-500">Foco Principal</span>
+            <span class="font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded text-xs">Rails 8</span>
+          </li>
+          <li class="flex justify-between items-center border-b border-gray-100 pb-2.5">
+            <span class="text-gray-500">Database</span>
+            <span class="font-medium text-gray-800">PostgreSQL</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="text-gray-500">Deploy & Infra</span>
+            <span class="font-medium text-gray-800">Docker / Kamal</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- Tech Stack com Borda/Textos Ruby no Hover -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+          Tecnologias & Ferramentas
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- Ruby / Rails -->
+        <div class="bg-white border border-gray-200/80 rounded-xl p-4 shadow-sm hover:border-rose-500/60 hover:shadow-md transition-all">
+          <span class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Backend</span>
+          <p class="text-gray-900 font-bold mt-1">Ruby on Rails</p>
+          <p class="text-xs text-gray-500 mt-1">APIs, Hotwire, Sidekiq</p>
+        </div>
+        <!-- PostgreSQL -->
+        <div class="bg-white border border-gray-200/80 rounded-xl p-4 shadow-sm hover:border-rose-500/60 hover:shadow-md transition-all">
+          <span class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Database</span>
+          <p class="text-gray-900 font-bold mt-1">PostgreSQL</p>
+          <p class="text-xs text-gray-500 mt-1">ORM, Modelagem, SQLite</p>
+        </div>
+        <!-- DevOps -->
+        <div class="bg-white border border-gray-200/80 rounded-xl p-4 shadow-sm hover:border-rose-500/60 hover:shadow-md transition-all">
+          <span class="text-xs font-semibold text-rose-600 uppercase tracking-wider">DevOps</span>
+          <p class="text-gray-900 font-bold mt-1">Docker & Kamal</p>
+          <p class="text-xs text-gray-500 mt-1">Containers & Deploy</p>
+        </div>
+        <!-- Frontend -->
+        <div class="bg-white border border-gray-200/80 rounded-xl p-4 shadow-sm hover:border-rose-500/60 hover:shadow-md transition-all">
+          <span class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Frontend</span>
+          <p class="text-gray-900 font-bold mt-1">Tailwind CSS</p>
+          <p class="text-xs text-gray-500 mt-1">HTML5, JavaScript</p>
+        </div>
+      </div>
+    </section>
+    <!-- Experiência -->
+    <section class="space-y-6" data-testid="experience">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+          Experiência & Projetos
+        </h2>
+      </div>
+      <div class="flex gap-4">
+        <div class="flex flex-col items-center">
+          <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
+          <div class="w-px grow bg-gray-200"></div>
+        </div>
+        <div class="pb-8">
+          <span class="text-xs font-semibold text-rose-600">2026 - Presente</span>
+          <h3 class="text-base font-bold text-gray-900">Projeto ConectaTrampos</h3>
+          <p class="text-sm text-gray-600 mt-1">Desenvolvimento de marketplace com Rails 8, Tailwind CSS e Docker.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Call to Action com Botão Vermelho Rubi -->
+    <section id="contato" class="bg-white border border-gray-200 rounded-2xl p-8 sm:p-10 text-center space-y-4 shadow-sm scroll-mt-24">
+      <h3 class="text-2xl font-bold text-gray-900">
+        Vamos conversar ou construir algo juntos?
+      </h3>
+      <p class="text-gray-600 text-sm sm:text-base max-w-lg mx-auto">
+        Fique à vontade para acompanhar meus projetos no GitHub ou entrar em contato direto por e-mail.
+      </p>
+      <div class="pt-2 flex flex-wrap justify-center gap-4">
+        <a href="mailto:seuemail@exemplo.com" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition-colors shadow-sm">
+          Enviar Mensagem
+        </a>
+        <a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold text-sm transition-colors">
+          Ver Projetos
+        </a>
+      </div>
+    </section>
+  </div>
 </div>
