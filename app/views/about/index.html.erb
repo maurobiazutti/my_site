@@ -70,47 +70,24 @@
     </div>
   </section>
   <div class="max-w-4xl mx-auto space-y-16">
-    <!-- Hero / Apresentação -->
-    <!-- Bio & Metodologia -->
-    <section class="grid md:grid-cols-3 gap-8">
-      <div class="md:col-span-2 space-y-5">
-        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-          <!-- Detalhe em Vermelho Rubi -->
-          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
-          Sobre Mim
-        </h2>
-        <div class="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
-          <p>
-            Tenho foco no ecossistema Ruby, projetando APIs bem estruturadas, otimizando consultas a bancos de dados relacionais como <span class="text-gray-900 font-medium">PostgreSQL</span> e gerenciando fluxos assíncronos de alto desempenho.
-          </p>
-          <p>
-            Acredito em código limpo, testes automatizados e implantações ágeis. Atualmente exploro o ecossistema moderno do Rails 8, automação de contêineres com <span class="text-gray-900 font-medium">Docker e Kamal</span>, além de resolução de desafios algorítmicos.
-          </p>
-        </div>
-      </div>
-      <!-- Card Lateral de Destaque -->
-      <div class="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">
-          Atualmente
-        </h3>
-        <ul class="space-y-3.5 text-sm">
-          <li class="flex justify-between items-center border-b border-gray-100 pb-2.5">
-            <span class="text-gray-500">Foco Principal</span>
-            <span class="font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded text-xs">Rails 8</span>
-          </li>
-          <li class="flex justify-between items-center border-b border-gray-100 pb-2.5">
-            <span class="text-gray-500">Database</span>
-            <span class="font-medium text-gray-800">PostgreSQL</span>
-          </li>
-          <li class="flex justify-between items-center">
-            <span class="text-gray-500">Deploy & Infra</span>
-            <span class="font-medium text-gray-800">Docker / Kamal</span>
-          </li>
-        </ul>
+    <!-- Sobre Mim -->
+    <section class="space-y-5 mt-18" data-testid="about-me">
+      <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+        <!-- Detalhe em Vermelho Rubi -->
+        <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+        Sobre Mim
+      </h2>
+      <div class="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
+        <p>
+          Tenho foco no ecossistema Ruby, projetando APIs bem estruturadas, otimizando consultas a bancos de dados relacionais como <span class="text-gray-900 font-medium">PostgreSQL</span> e gerenciando fluxos assíncronos de alto desempenho.
+        </p>
+        <p>
+          Acredito em código limpo, testes automatizados e implantações ágeis. Atualmente exploro o ecossistema moderno do Rails 8, automação de contêineres com <span class="text-gray-900 font-medium">Docker e Kamal</span>, além de resolução de desafios algorítmicos.
+        </p>
       </div>
     </section>
     <!-- Tech Stack com Borda/Textos Ruby no Hover -->
-    <section class="space-y-6">
+    <section class="space-y-6" data-testid="tech-stack">
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
           <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
