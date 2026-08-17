@@ -1,31 +1,22 @@
 <div class="bg-gray-50 text-gray-900 min-h-screen py-10 px-4 sm:px-6 lg:px-8 font-sans">
-  <!-- Container principal com borda sutil e fundo branco moderno -->
+  <!-- Identidade profissional -->
   <section class="relative mx-auto max-w-4xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm" aria-label="Identidade profissional">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-      <!-- Coluna da Foto -->
+      <!-- Foto -->
       <div class="shrink-0 self-center sm:self-auto">
-        <!-- Container da foto com anel de destaque em gradiente Ruby -->
         <div class="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-gray-100 p-0.5 bg-white shadow-inner">
-          <!-- Gradiente Ruby como placeholder caso não haja imagem -->
           <div class="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-red-700 text-2xl font-semibold text-white">
             <%= image_tag "foto.png", class: "h-full w-full rounded-full object-cover", alt: "mauro" %>
           </div>
         </div>
       </div>
-      <!-- Coluna do Nome e Handle -->
+
+      <!-- Nome e GitHub -->
       <div class="min-w-0 flex-1">
-        <div class="flex items-center gap-2">
-          <!-- Texto principal em cinza quase preto -->
-          <h1 class="truncate text-4xl font-bold tracking-tight text-gray-950 mb-2">
-            Mauro Biazutti
-          </h1>
-        </div>
-        <a
-          href="https://github.com/maurobiazutti"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm text-gray-700 transition-colors hover:text-gray-900"
-        >
+        <h1 class="truncate text-4xl font-bold tracking-tight text-gray-950 mb-2">
+          Mauro Biazutti
+        </h1>
+        <%= link_to "https://github.com/maurobiazutti", target: "_blank", rel: "noopener noreferrer", class: "inline-flex items-center gap-2 text-sm text-gray-700 transition-colors hover:text-gray-900" do %>
           <!-- GitHub -->
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.41 7.86 10.94.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18A10.94 10.94 0 0 1 12 6.08c.97 0 1.95.13 2.86.38 2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path>
@@ -35,22 +26,20 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" class="text-green-500" aria-hidden="true">
             <path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm-34.32,69.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path>
           </svg>
-        </a>
+        <% end %>
       </div>
     </div>
-    <!-- Zona B: Descrição e Localização -->
+
+    <!-- Resumo e Localização -->
     <div class="mt-5 space-y-1.5" data-testid="zone-b">
-      <!-- Texto de destaque em cinza escuro -->
       <p class="text-sm font-bold text-gray-800 sm:text-base">
         Desenvolvedor Full Stack Ruby on Rails
       </p>
-      <!-- Texto secundário em cinza médio -->
       <p class="text-sm text-gray-600 leading-relaxed sm:text-base">
         Transformando necessidades de negócio em soluções web funcionais, sustentáveis e fáceis de evoluir.
       </p>
-      <!-- Localização -->
-      <div class="mt-2.5 pt-3 border-t border-gray-100">
-        <div class="flex items-center gap-1.5 text-sm text-gray-500">
+      <div class="mt-2.5 pt-2 border-t border-gray-100">
+        <div class="flex items-center gap-1.5 text-xs text-gray-500">
           <!-- Ícone com cor Ruby suave -->
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="h-4 w-4 shrink-0 text-rose-500/80" aria-hidden="true">
             <path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path>
@@ -58,16 +47,16 @@
           <span>
             <span>Santos Dumont , </span>
             <span>Minas Gerais , </span>
-            <%# <span aria-hidden="true">,</span> %>
             <span>Brasil</span>
             <span class="ml-1" role="img" aria-label="Brasil">🇧🇷</span>
           </span>
         </div>
       </div>
     </div>
+
     <!-- Ações: Botões -->
-    <div class="mt-4 flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100">
-      <!-- Botão Primário: Baixar CV -->
+    <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100">
+      <!-- Baixar CV -->
       <button
         type="button"
         class="
@@ -83,31 +72,21 @@
         </svg>
         <span>Baixar CV</span>
       </button>
-      <!-- Link WhatsApp -->
-      <a
-        href="https://wa.me/5532988272267"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="
-          inline-flex shrink-0 cursor-pointer items-center justify-center font-medium
-          transition-all outline-none select-none
-          focus-visible:ring-2 focus-visible:ring-gray-300
-          border border-gray-200 bg-white hover:bg-gray-50 text-gray-800
-          min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm
-        "
-      >
+
+      <!-- WhatsApp -->
+      <%= link_to "https://wa.me/5532988272267", target: "_blank", rel: "noopener noreferrer", class: "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-gray-300 border border-gray-200 bg-white hover:bg-gray-50 text-gray-800 min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="h-4 w-4 text-green-500" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path>
         </svg>
         <span>WhatsApp</span>
-      </a>
+      <% end %>
     </div>
   </section>
+
   <div class="max-w-4xl mx-auto space-y-16">
     <!-- Sobre Mim -->
     <section class="space-y-5 mt-18" data-testid="about-me">
       <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-        <!-- Detalhe em Vermelho Rubi -->
         <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
         Sobre Mim
       </h2>
@@ -129,354 +108,157 @@
         </p>
       </div>
     </section>
+
     <!-- Experiência -->
     <section class="space-y-6" data-testid="experience">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
-          Experiência & Projetos
-        </h2>
-      </div>
+      <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+        <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+        Experiência & Projetos
+      </h2>
+
       <div class="space-y-0">
-        <!-- Experiência 1 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1 pb-8">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Analista de Sistemas
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      MBL Empreendimentos Digitais LTDA
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      agosto de 2019 - Presente
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Principais atividades: Atuação em ambiente de e-commerce utilizando Shopify,
-                  com gestão e otimização de campanhas de tráfego pago por meio do Meta Ads;
-                  desenvolvimento e manutenção de landing pages focadas em conversão;
-                  implementação e integração de APIs, incluindo soluções para rastreamento de pedidos e
-                  comunicação com serviços externos; desenvolvimento e automação de estratégias de e-mail marketing;
-                  análise e integração de dados entre plataformas e sistemas.
-                </p>
-                <p>
-                  Atuação também no desenvolvimento de soluções internas e automações utilizando Ruby e Ruby on Rails,
-                  com integração de APIs RESTful, manipulação de dados e desenvolvimento de funcionalidades voltadas às
-                  necessidades do negócio.
-                </p>
-                <br>
-                <p>
-                  Experiência adicional em suporte técnico e infraestrutura, incluindo Help Desk, suporte remoto,
-                  monitoramento de sistemas, administração de redes, instalação e configuração de softwares,
-                  licenciamento, suporte a aplicações, treinamento de usuários e rotinas de backup.
-                </p>
-                <br>
-                <p>
-                  Tecnologias e ferramentas: Ruby, Ruby on Rails, PostgreSQL, RESTful APIs, Shopify, Meta Ads, Git,
-                  GitHub, HTML, CSS, JavaScript, Linux e ferramentas de automação e integração.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-        <!-- Experiência 2 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1 pb-8">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Desenvolvedor Ruby on Rails
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      DesenvolvendoMe LTDA
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      janeiro de 2022 - julho de 2024
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Principais atividades: Planejamento e gestão de projetos utilizando metodologias ágeis; desenvolvimento,
-                  análise e manutenção de código; aplicação de boas práticas de engenharia de software, qualidade e revisão de código;
-                  utilização de Git e GitHub para controle de versão e colaboração; participação nos processos de desenvolvimento,
-                  testes e entrega de software; análise e melhoria de produtividade e processos de desenvolvimento.
-                </p>
-                <br>
-                <p>
-                  Tecnologias e ferramentas: Ruby, Ruby on Rails, PostgreSQL, RESTful APIs, Git, GitHub, Linux, Terminal,
-                  JetBrains IDEs, Heroku, AWS e Slack.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-        <!-- Experiência 3 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Líder Técnico de Produção e Manutenção
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      Usimor Centro de Usinagem Moreira LTDA
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      Fevereiro de 2014 - agosto de 2019
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Principais atividades: Liderança técnica das operações de produção e manutenção, atuando no planejamento,
-                  acompanhamento e controle das atividades industriais. Desenvolvimento e detalhamento de projetos técnicos utilizando
-                  AutoCAD; elaboração de orçamentos e levantamento de custos; planejamento e programação da produção;
-                  elaboração e acompanhamento de planos de manutenção preventiva e corretiva; acompanhamento técnico de serviços e
-                  processos produtivos; orientação e suporte técnico aos colaboradores; acompanhamento do cumprimento de padrões de qualidade,
-                  segurança e procedimentos operacionais; identificação de oportunidades de melhoria e otimização dos processos.
-                </p>
-                <br>
-                <p>
-                  Principais competências: Liderança técnica, planejamento e controle da produção, gestão de manutenção,
-                  elaboração de projetos técnicos, AutoCAD, orçamentação, análise de custos, acompanhamento de serviços e
-                  melhoria de processos.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
+        <%= render "about/timeline_item", title: "Analista de Sistemas", subtitle: "MBL Empreendimentos Digitais LTDA", period: "agosto de 2019 - Presente" do %>
+          <p>
+            Principais atividades: Atuação em ambiente de e-commerce utilizando Shopify,
+            com gestão e otimização de campanhas de tráfego pago por meio do Meta Ads;
+            desenvolvimento e manutenção de landing pages focadas em conversão;
+            implementação e integração de APIs, incluindo soluções para rastreamento de pedidos e
+            comunicação com serviços externos; desenvolvimento e automação de estratégias de e-mail marketing;
+            análise e integração de dados entre plataformas e sistemas.
+          </p>
+          <p>
+            Atuação também no desenvolvimento de soluções internas e automações utilizando Ruby e Ruby on Rails,
+            com integração de APIs RESTful, manipulação de dados e desenvolvimento de funcionalidades voltadas às
+            necessidades do negócio.
+          </p>
+          <br>
+          <p>
+            Experiência adicional em suporte técnico e infraestrutura, incluindo Help Desk, suporte remoto,
+            monitoramento de sistemas, administração de redes, instalação e configuração de softwares,
+            licenciamento, suporte a aplicações, treinamento de usuários e rotinas de backup.
+          </p>
+          <br>
+          <p>
+            Tecnologias e ferramentas: Ruby, Ruby on Rails, PostgreSQL, RESTful APIs, Shopify, Meta Ads, Git,
+            GitHub, HTML, CSS, JavaScript, Linux e ferramentas de automação e integração.
+          </p>
+        <% end %>
+
+        <%= render "about/timeline_item", title: "Desenvolvedor Ruby on Rails", subtitle: "DesenvolvendoMe LTDA", period: "janeiro de 2022 - julho de 2024" do %>
+          <p>
+            Principais atividades: Planejamento e gestão de projetos utilizando metodologias ágeis; desenvolvimento,
+            análise e manutenção de código; aplicação de boas práticas de engenharia de software, qualidade e revisão de código;
+            utilização de Git e GitHub para controle de versão e colaboração; participação nos processos de desenvolvimento,
+            testes e entrega de software; análise e melhoria de produtividade e processos de desenvolvimento.
+          </p>
+          <br>
+          <p>
+            Tecnologias e ferramentas: Ruby, Ruby on Rails, PostgreSQL, RESTful APIs, Git, GitHub, Linux, Terminal,
+            JetBrains IDEs, Heroku, AWS e Slack.
+          </p>
+        <% end %>
+
+        <%= render "about/timeline_item", title: "Líder Técnico de Produção e Manutenção", subtitle: "Usimor Centro de Usinagem Moreira LTDA", period: "Fevereiro de 2014 - agosto de 2019", last: true do %>
+          <p>
+            Principais atividades: Liderança técnica das operações de produção e manutenção, atuando no planejamento,
+            acompanhamento e controle das atividades industriais. Desenvolvimento e detalhamento de projetos técnicos utilizando
+            AutoCAD; elaboração de orçamentos e levantamento de custos; planejamento e programação da produção;
+            elaboração e acompanhamento de planos de manutenção preventiva e corretiva; acompanhamento técnico de serviços e
+            processos produtivos; orientação e suporte técnico aos colaboradores; acompanhamento do cumprimento de padrões de qualidade,
+            segurança e procedimentos operacionais; identificação de oportunidades de melhoria e otimização dos processos.
+          </p>
+          <br>
+          <p>
+            Principais competências: Liderança técnica, planejamento e controle da produção, gestão de manutenção,
+            elaboração de projetos técnicos, AutoCAD, orçamentação, análise de custos, acompanhamento de serviços e
+            melhoria de processos.
+          </p>
+        <% end %>
       </div>
     </section>
+
     <!-- Tecnologias & Ferramentas -->
     <section class="space-y-6" data-testid="tech-stack">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
-          Tecnologias & Ferramentas
-        </h2>
-      </div>
+      <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+        <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+        Tecnologias & Ferramentas
+      </h2>
+
       <div class="flex flex-wrap gap-2">
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Ruby</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Ruby on Rails</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Linux</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">PostgreSQL</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Docker</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Git</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">JavaScript</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">HTML</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">CSS</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Tailwind CSS</span>
-        <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">Bootstrap</span>
+        <% @technologies.each do |technology| %>
+          <span class="inline-flex items-center rounded-full bg-rose-50 border border-rose-200 px-3 py-1 text-sm font-medium text-rose-700">
+            <%= technology %>
+          </span>
+        <% end %>
       </div>
     </section>
+
     <!-- Educação -->
     <section class="space-y-6" data-testid="education">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-          <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
-          Educação
-        </h2>
-      </div>
+      <h2 class="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+        <span class="w-2 h-5 bg-rose-600 rounded-full"></span>
+        Educação
+      </h2>
+
       <div class="space-y-0">
-        <!-- Formação 1 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1 pb-8">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Análise e Desenvolvimento de Sistemas - Tecnólogo
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      Universidade Estácio de Sá
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      julho de 2022 - dezembro de 2024
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Formação voltada ao desenvolvimento de sistemas e soluções de software,
-                  abrangendo desde a análise de requisitos e modelagem de sistemas até o desenvolvimento,
-                  testes, implantação e manutenção de aplicações. O curso proporciona uma visão prática dos
-                  processos de desenvolvimento de software, banco de dados, programação, arquitetura de
-                  sistemas e gestão de projetos.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-        <!-- Formação 2 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1 pb-8">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Engenharia Mecânica - Bacharelado
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      Faculdade Pitágoras
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      janeiro de 2011 - dezembro de 2017
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Formação voltada ao desenvolvimento, análise, projeto, fabricação, operação e manutenção
-                  de máquinas, equipamentos e sistemas mecânicos. O curso proporciona uma base sólida em
-                  engenharia aplicada, combinando conhecimentos técnicos, matemáticos e científicos
-                  para análise e solução de problemas relacionados a processos industriais e sistemas mecânicos.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-        <!-- Formação 3 -->
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <div class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full border-2 border-rose-600 bg-white"></div>
-            <div class="w-px grow bg-gray-200"></div>
-          </div>
-          <div class="min-w-0 flex-1">
-            <details class="group" open>
-              <summary class="flex w-full cursor-pointer list-none flex-col gap-1 text-left [&::-webkit-details-marker]:hidden">
-                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                  <div class="min-w-0">
-                    <h3 class="text-base font-bold text-gray-900">
-                      Back-end - Ruby on Rails
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                      DesenvolvendoMe
-                    </p>
-                  </div>
-                  <div class="flex shrink-0 items-center gap-1">
-                    <span class="text-xs font-semibold text-rose-600">
-                      junho de 2022 – dezembro 2024
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-4 w-4 text-gray-400 transition-transform duration-200 group-open:-rotate-90" fill="currentColor">
-                      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </summary>
-              <div class="mt-2 text-sm text-gray-600">
-                <p>
-                  Formação prática em desenvolvimento Back-end, com foco na linguagem Ruby e no framework Ruby on Rails.
-                  O curso abordou a construção de aplicações web, desenvolvimento de APIs,
-                  integração com bancos de dados e aplicação de boas práticas de programação e
-                  engenharia de software.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
+        <%= render "about/timeline_item", title: "Análise e Desenvolvimento de Sistemas - Tecnólogo", subtitle: "Universidade Estácio de Sá", period: "julho de 2022 - dezembro de 2024" do %>
+          <p>
+            Formação voltada ao desenvolvimento de sistemas e soluções de software,
+            abrangendo desde a análise de requisitos e modelagem de sistemas até o desenvolvimento,
+            testes, implantação e manutenção de aplicações. O curso proporciona uma visão prática dos
+            processos de desenvolvimento de software, banco de dados, programação, arquitetura de
+            sistemas e gestão de projetos.
+          </p>
+        <% end %>
+
+        <%= render "about/timeline_item", title: "Engenharia Mecânica - Bacharelado", subtitle: "Faculdade Pitágoras", period: "janeiro de 2011 - dezembro de 2017" do %>
+          <p>
+            Formação voltada ao desenvolvimento, análise, projeto, fabricação, operação e manutenção
+            de máquinas, equipamentos e sistemas mecânicos. O curso proporciona uma base sólida em
+            engenharia aplicada, combinando conhecimentos técnicos, matemáticos e científicos
+            para análise e solução de problemas relacionados a processos industriais e sistemas mecânicos.
+          </p>
+        <% end %>
+
+        <%= render "about/timeline_item", title: "Back-end - Ruby on Rails", subtitle: "DesenvolvendoMe", period: "junho de 2022 – dezembro 2024", last: true do %>
+          <p>
+            Formação prática em desenvolvimento Back-end, com foco na linguagem Ruby e no framework Ruby on Rails.
+            O curso abordou a construção de aplicações web, desenvolvimento de APIs,
+            integração com bancos de dados e aplicação de boas práticas de programação e
+            engenharia de software.
+          </p>
+        <% end %>
       </div>
     </section>
+
     <!-- Contato -->
     <section id="contato" class="bg-white border border-gray-200 rounded-2xl p-8 sm:p-10 text-center space-y-4 shadow-sm scroll-mt-24">
       <h3 class="text-2xl font-bold text-gray-900">
         Vamos conversar ou construir algo juntos?
       </h3>
       <p class="text-gray-600 text-sm sm:text-base max-w-lg mx-auto">
-        Fique à vontade para acompanhar meus projetos no GitHub ou entrar em contato direto por WhatsApp ou Enviar Mensagem.
+        Fique à vontade para acompanhar meus projetos no GitHub ou entrar em contato direto por WhatsApp ou E-mail.
       </p>
+
       <div class="pt-2 flex flex-wrap justify-center gap-4">
-        <!-- Enviar Mensagem -->
-        <a href="mailto:seuemail@exemplo.com" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition-colors shadow-sm">
+        <%= link_to "mailto:seuemail@exemplo.com", class: "inline-flex items-center justify-center px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition-colors shadow-sm" do %>
           Enviar Mensagem
-        </a>
-        <!-- WhatsApp -->
-        <a
-          href="https://wa.me/5532988272267"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="
-            inline-flex shrink-0 cursor-pointer items-center justify-center font-medium
-            transition-all outline-none select-none
-            focus-visible:ring-2 focus-visible:ring-gray-300
-            border border-gray-200 bg-white hover:bg-gray-50 text-gray-800
-            min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm
-          "
-        >
+        <% end %>
+
+        <%= link_to "https://wa.me/5532988272267", target: "_blank", rel: "noopener noreferrer", class: "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-gray-300 border border-gray-200 bg-white hover:bg-gray-50 text-gray-800 min-h-9 gap-2 py-1.5 rounded-lg px-4 text-sm" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="h-4 w-4 text-green-500" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path>
           </svg>
           <span>WhatsApp</span>
-        </a>
-        <!-- Ver Projetos -->
-        <a href="https://github.com/maurobiazutti" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold text-sm transition-colors">
+        <% end %>
+
+        <%= link_to "https://github.com/maurobiazutti", target: "_blank", rel: "noopener noreferrer", class: "inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold text-sm transition-colors" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" class="shrink-0 text-muted-foreground">
             <path d="M216,104v8a56.06,56.06,0,0,1-48.44,55.47A39.8,39.8,0,0,1,176,192v40a8,8,0,0,1-8,8H104a8,8,0,0,1-8-8V216H72a40,40,0,0,1-40-40A24,24,0,0,0,8,152a8,8,0,0,1,0-16,40,40,0,0,1,40,40,24,24,0,0,0,24,24H96v-8a39.8,39.8,0,0,1,8.44-24.53A56.06,56.06,0,0,1,56,112v-8a58.14,58.14,0,0,1,7.69-28.32A59.78,59.78,0,0,1,69.07,28,8,8,0,0,1,76,24a59.75,59.75,0,0,1,48,24h24a59.75,59.75,0,0,1,48-24,8,8,0,0,1,6.93,4,59.74,59.74,0,0,1,5.37,47.68A58,58,0,0,1,216,104Z"></path>
           </svg>
           Ver Projetos
-        </a>
+        <% end %>
+
         <!-- Baixar CV -->
         <button
           type="button"
