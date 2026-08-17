@@ -1,24 +1,23 @@
-# README
+
+DesenvolvendoMe LTDA – 2022 a 2024
+Cargo: Trainee
+Principais atividades: Gestão e Planejamento de Projeto Ágil, Ferramentas para
+Aumentar a Produtividade, Desenvolvimento e Análise de Código, Processo de
+Desenvolvimento, Entrega e Qualidade de Software, Gestão de Versionamento Código,
+Gestão de Qualidade de Código, Tecnologias usadas - Ruby, Ruby on Rails, Git, Github,
+Linux, Terminal, Jetbrains IDE, Herok, AWS, Slack, Postgres, Restful
+
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+MBL Empreendimentos Digitais LTDA – 2019 a 2023
+Cargo: Analista de TI
+Principais atividades: Help Desk, Suporte Remoto, Monitoramento de Sistemas,
+Administração de Redes, Instalação e Configuração de Softwares, Licenciamento de
+Software, Suporte a Aplicações, Treinamento, Rotinas de Backup.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Usimor Centro de Usinagem Moreira LTDA – 2014 a 2019
+Cargo: Coordenador de Manutenção e Produção
+Principais atividades: Planejamento e Organização, Desenvolver planos de manutenção
+preventiva e corretiva, Elaborar cronogramas de produção, Liderar e supervisionar a equipe
+de manutenção e produção, Monitorar o desempenho das máquinas e equipamentos,
+Implementação de Melhorias Continuas, Elaborar relatórios periódicos.
