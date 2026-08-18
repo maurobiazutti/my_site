@@ -4,61 +4,70 @@ Documento de continuidade para retomar o trabalho no projeto.
 
 ## Contexto do Projeto
 
-Site pessoal do **Mauro Biazutti** (desenvolvedor Full Stack Ruby on Rails). Objetivo: página "Sobre Mim" que serve como currículo online. Futuro: área de "Articles" (artigos de tecnologia com comentários) e área de "Contatos".
+Site pessoal do **Mauro Biazutti** (desenvolvedor Full Stack Ruby on Rails). Objetivo: página "Sobre Mim" que serve como currículo online. Atualmente também recebe mensagens de contato (com área administrativa protegida por login). Futuro: área de "Articles" (artigos de tecnologia com comentários).
 
-- **Stack**: Rails 8.1.3, Tailwind CSS, Hotwire (Turbo + Stimulus), Importmap
-- **Rota única**: `root "about#index"` → `AboutController#index` → `app/views/about/index.html.erb`
-- **Layout do projeto**: sidebar/menu para links (o usuário altera à mão)
+- **Stack**: Rails 8.1.3, PostgreSQL, Tailwind CSS, Hotwire (Turbo + Stimulus), Importmap, bcrypt
+- **Rotas** (`config/routes.rb`):
+  - `resource :session` — sign in/out
+  - `resources :passwords, param: :token` — reset de senha
+  - `root "about#index"` — página pública
+  - `resources :contacts, only: [ :index, :show, :new, :create ]`
+- **Layout**: navbar com logo à esquerda, links centrados ("Sobre Mim", "Artigos", "Contato") e, à direita, botão de login + ícone de mensagens com badge.
 
 ## Estado Atual — O que já foi feito
 
 ### Página "Sobre Mim" (`app/views/about/index.html.erb`)
 
-1. **Formatação/leitura**: reescrito com indentação consistente e blocos organizados.
-2. **`<details open>`**: itens de Experiência e Educação abrem com conteúdo visível por padrão (usuário pode ocultar).
-3. **Tags de tecnologia**: seção "Tecnologias & Ferramentas" com pills ruby — **dados movidos para o controller** (`@technologies` em `about_controller.rb`), renderizadas com `.each`.
-4. **Seção "Educação"** criada no estilo timeline (mesmo visual da Experiência).
-5. **Botões da section principal**:
-   - "Seguir" → **"Baixar CV"** (com ícone de download)
-   - "Compartilhar" → **"WhatsApp"** (link `https://wa.me/5532988272267`, ícone oficial verde)
-6. **Botão "Ver Projetos"** (seção Contato) → link para o GitHub, ícone antes do texto.
-7. **"Sobre Mim" reescrito** com base em feedback de recrutador:
-   - Posicionamento: "Full Stack com ênfase em Backend"
-   - Removidos buzzwords ("código limpo, testes...") e erro de português
-   - Engenharia citada de forma indireta (opção 4 escolhida pelo usuário)
-   - Cita entregas concretas (Shopify, rastreamento de pedidos, landing pages, e-mail marketing, integrações)
-8. **Refatoração "mais Ruby"** (validada com STATUS 200):
-   - `about_controller.rb`: define `@technologies`
-   - Novo partial `app/views/about/_timeline_item.html.erb` reutilizado por Experiência e Educação (render com **bloco** `<%= render "about/timeline_item", title:, subtitle:, period:, last: do %>`)
-   - Links agora usam `link_to ... do ... end`
+1. **`<details open>`**: itens de Experiência e Educação abrem com conteúdo visível por padrão.
+2. **Tags de tecnologia**: dados em `@technologies` no `about_controller.rb`.
+3. **Ações rápidas**: "Baixar CV" (ícone download), "WhatsApp" (`wa.me/5532988272267`), "Ver Projetos" (GitHub).
+4. **"Sobre Mim" reescrito** com tom indireto sobre engenharia, citando entregas concretas.
+5. **Refatoração "mais Ruby"**: partial `_timeline_item.html.erb` reutilizado; botões em `link_to ... do ... end`.
 
-### Outros
+### Mensagens de contato (área nova)
 
-- **README.md** reescrito descrevendo o site, funcionalidades e roadmap.
+- **Model `Contact`**: `scope :recent`, métodos `display_name`/`initials`; validações `presence` de `name` e `email`.
+- **`ContactsController`**: `allow_unauthenticated_access except: [ :index, :show ]` — formulário público; index/show exigem login. `before_action :build_contact` para `new`/`create`.
+- **Formulário em modal** (`contacts/new` + `_form` + turbo_frame "modal").
+- **Index** (`/contacts`): listagem com avatar (inicial), nome, data, preview da mensagem, e-mail/telefone e link "Ver detalhes".
+- **Show** (`/contacts/:id`): mensagem completa e contatos clicáveis (`mailto:`/`tel:`).
+
+### Autenticação (padrão Rails 8)
+
+- `User` (`has_secure_password`), `Session` (cookie assinado), `Current` (CurrentAttributes).
+- `Authentication` concern: `before_action :resume_session` roda em **toda** request (para o menu saber se há usuário logado) e `require_authentication` redireciona quando a ação exige login.
+- **Sign out redireciona para a root** (`sessions_controller.rb`).
+- Recuperação de senha via `PasswordsMailer`.
+
+### Navbar (`app/views/layouts/application.html.erb`)
+
+- Links de navegação centralizados via helper `nav_link_to` (`application_helper.rb`).
+- Direita: "Sign in" (estilo do botão WhatsApp, sem ícone) ou "Sign out", e ícone de mensagens → link para `/contacts` com badge de contagem (`Contact.count`, só aparece se > 0).
+- Público vs. autenticado: root e `contacts/new` públicos; `contacts/index` e `show` exigem login.
+
+### Refatoração geral (sem mudar funcionalidade/estilo)
+
+- **Partials compartilhados** (`app/views/shared/`): `_icon_mail`, `_icon_phone` (ícones duplicados), `_download_cv_button` (botão "Baixar CV" duplicado no about).
+- Comentários desnecessários removidos; `Contact.count` calculado uma única vez no layout.
 
 ## Onde Paramamos
 
-Última mudança: aplicada a "opção 4" no parágrafo de "Sobre Mim" que fala da engenharia de forma indireta ("Antes do software, construí uma carreira na engenharia...").
-
-Página validada renderizando (STATUS 200). Comando de validação:
-
-```bash
-bin/rails runner 'status, _h, b = AboutController.action(:index).call(Rack::MockRequest.env_for("/")); puts "STATUS #{status}"'
-```
+Última mudança: validações de `name` e `email` no model `Contact` e atualização deste documento.
 
 ## Pendências / Próximos Passos
 
-1. **Métricas reais no "Sobre Mim"** — recomendado pelo recrutador; **aguardando o usuário informar números** (ex.: redução de CAC, conversão, tempo de resposta). NÃO inventar dados.
-2. **Botão "Baixar CV"** — é um `<button>` sem link. Falta criar/anexar o arquivo do currículo (ex.: `public/cv.pdf`) e transformar em `<a href>` ou usar `send_data`.
-3. **E-mail placeholder** — `mailto:seuemail@exemplo.com` na seção Contato precisa do e-mail real.
-4. **Área "Articles"** (planejada): CRUD de artigos de tecnologia + **sistema de comentários**.
-5. **Área "Contatos"** (planejada): centralizar canais de contato (formulário etc.).
-6. Verificar se o usuário quer navegação/menu entre as futuras páginas.
+1. **Métricas reais no "Sobre Mim"** — recomendado pelo recrutador; **aguardando o usuário informar números**. NÃO inventar dados.
+2. **Botão "Baixar CV"** — ainda é `<button>` sem link. Falta criar/anexar o CV (ex.: `public/cv.pdf`) e transformar em `<a href>` ou usar `send_data`.
+3. **E-mail de recuperação de senha** — o `PasswordsMailer` usa assunto/texto em inglês e depende de configuração de e-mail (SMTP). Verificar antes de publicar.
+4. **Marcar mensagens como lidas** — decidir se o badge da navbar deve refletir só mensagens não lidas (hoje conta todas).
+5. **Área "Articles"** (planejada): CRUD de artigos de tecnologia + **sistema de comentários**.
+6. **Ícone de mensagens acessível sem login?** — o badge e o link aparecem para todos; clicar leva ao login (protegido). Confirmar se é o comportamento desejado.
 
 ## Observações Importantes
 
-- **O usuário edita o arquivo por conta própria** (troca imagem, dados, textos). Antes de alterar, sempre reler o estado atual do arquivo — ele já modificou conteúdo várias vezes fora da sessão.
-- Não usar "Formado em Engenharia Mecânica" de forma direta — o usuário pediu tom indireto.
-- Preferência: o usuário já rejeitou refatoração pesada uma vez (partials) e depois a aceitou quando pediu "mais Ruby". Confirmar antes de grandes mudanças estruturais.
-- Sempre validar com o comando de render acima após editar o template.
+- **O usuário edita os arquivos por conta própria** (textos, estilos, dados). Antes de alterar, sempre reler o estado atual dos arquivos.
+- Não usar "Formado em Engenharia Mecânica" de forma direta — tom indireto.
+- Preferência: o usuário pede refatorações pontuais ("mais Ruby"); confirmar antes de grandes mudanças estruturais.
+- Sempre validar as páginas após editar templates (renderização com STATUS 200). Comandos usados:
+  - `bin/rails runner '...'` (render direto) ou curl no servidor em `http://localhost:3000`.
 - Comunicação em português.

@@ -8,7 +8,7 @@ Este é um site pessoal construído com **Ruby on Rails**, pensado para:
 
 - **Me apresentar**: perfil com foto, nome, cargo e resumo profissional.
 - **Exibir meu currículo online**: seções de "Sobre Mim", "Experiência & Projetos", "Educação" e "Tecnologias & Ferramentas".
-- **Facilitar contato**: botões diretos para baixar o currículo (CV), WhatsApp, e-mail e GitHub.
+- **Receber mensagens**: formulário de contato em modal que grava as mensagens no banco, com uma área administrativa (login) para listar e ler cada mensagem.
 
 ## Funcionalidades
 
@@ -24,6 +24,19 @@ O coração do site. Nela o visitante encontra:
 - **Tecnologias & Ferramentas** — tags com as tecnologias que utilizo no dia a dia.
 - **Ações rápidas** — botões para baixar o CV, chamar no WhatsApp e abrir o GitHub.
 
+### Mensagens de contato
+
+- **Formulário público** — abrindo em modal ("Enviar Mensagem"), sem necessidade de login.
+- **Caixa de entrada** — listagem de todas as mensagens recebidas (`/contacts`), com preview, dados do remetente e link para o detalhe.
+- **Detalhe da mensagem** (`/contacts/:id`) — mensagem completa e dados de contato clicáveis (e-mail e telefone).
+- **Proteção** — a listagem e o detalhe exigem login; validações garantem nome e e-mail preenchidos.
+
+### Autenticação
+
+- **Sign in / Sign out** — sessão por cookie, senha com `has_secure_password` (bcrypt).
+- **Recuperação de senha** — e-mail de reset (rotas `/passwords`).
+- **Navegação condicional** — o menu mostra "Sign in" ou "Sign out" conforme o estado da sessão, e o ícone de mensagens exibe um badge com a contagem de mensagens recebidas.
+
 ### Área de "Articles" (em desenvolvimento)
 
 Futuro espaço para escrever artigos de tecnologia. A ideia é:
@@ -31,16 +44,14 @@ Futuro espaço para escrever artigos de tecnologia. A ideia é:
 - Publicação de artigos técnicos (Ruby, Rails, boas práticas, etc.).
 - **Área de comentários** liberada para os leitores interagirem com o conteúdo.
 
-### Área de "Contatos" (em desenvolvimento)
-
-Espaço dedicado para centralizar os canais de contato e facilitar a comunicação com visitantes e recrutadores.
-
 ## Stack
 
 - **Ruby on Rails 8** — framework principal.
+- **PostgreSQL** — banco de dados.
 - **Tailwind CSS** — estilização (via `tailwindcss-rails`).
 - **Hotwire (Turbo + Stimulus)** — interatividade sem complicação.
 - **Importmap** — JavaScript sem build.
+- **bcrypt** — hashing de senhas para autenticação.
 
 ## Requisitos
 
@@ -68,19 +79,39 @@ Acesse em `http://localhost:3000`.
 ```
 app/
 ├── controllers/
-│   └── about_controller.rb   # Controlador da página inicial (Sobre Mim)
+│   ├── about_controller.rb        # Página inicial (Sobre Mim) — pública
+│   ├── contacts_controller.rb     # Mensagens (new/create públicos; index/show com login)
+│   ├── sessions_controller.rb     # Sign in / Sign out
+│   ├── passwords_controller.rb    # Recuperação de senha
+│   └── concerns/
+│       └── authentication.rb      # Autenticação compartilhada
+├── models/
+│   ├── contact.rb                 # Mensagens de contato (scope :recent, validações)
+│   ├── user.rb                    # Usuário admin (has_secure_password)
+│   ├── session.rb                 # Sessões por cookie
+│   └── current.rb                 # CurrentAttributes (usuário da sessão)
+├── helpers/
+│   └── application_helper.rb      # nav_link_to
 └── views/
-    └── about/
-        └── index.html.erb    # Template da página "Sobre Mim"
+    ├── about/                     # Página "Sobre Mim" + timeline
+    ├── contacts/                  # Formulário (modal), listagem e detalhe
+    ├── sessions/                  # Sign in
+    ├── passwords/                 # Reset de senha
+    ├── shared/                    # Partials de ícones e botão CV
+    └── layouts/
+        └── application.html.erb   # Layout com navbar, login e badge de mensagens
 ```
 
 ## Roadmap
 
 - [x] Página "Sobre Mim" com perfil e currículo
+- [x] Formulário de contato com mensagens salvas no banco
+- [x] Área de mensagens (listagem e detalhe) com login
+- [x] Autenticação (sign in/out e recuperação de senha)
 - [ ] Área de "Articles" com publicação de artigos de tecnologia
 - [ ] Sistema de comentários nos artigos
-- [ ] Área de "Contatos" com formulário e canais de comunicação
 - [ ] Download do currículo (CV) em PDF
+- [ ] Marcar mensagens como lidas
 
 ## Licença
 
