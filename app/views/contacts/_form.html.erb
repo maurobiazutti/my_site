@@ -1,0 +1,55 @@
+<div class="mx-auto w-full max-w-2xl">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold tracking-tight text-gray-950">
+      Enviar mensagem
+    </h1>
+    <p class="mt-2 text-sm leading-relaxed text-gray-600">
+      Preencha o formulário abaixo e entrarei em contato assim que possível.
+    </p>
+  </div>
+  <%= form_with(model: contact, class: "space-y-6") do |form| %>
+    <% if contact.errors.any? %>
+      <div class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        <h2 class="font-semibold">
+          Não foi possível enviar a mensagem.
+        </h2>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <% contact.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <%= form.label :name, "Nome", class: "mb-2 block text-sm font-medium text-gray-800" %>
+        <%= form.text_field :name,
+          placeholder: "Seu nome",
+          class: "block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 shadow-sm outline-none transition focus:border-rose-500 focus:ring-2 focus:ring-rose-100" %>
+      </div>
+      <div>
+        <%= form.label :phone, "Telefone", class: "mb-2 block text-sm font-medium text-gray-800" %>
+        <%= form.telephone_field :phone,
+          placeholder: "(32) 99999-9999",
+          class: "block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 shadow-sm outline-none transition focus:border-rose-500 focus:ring-2 focus:ring-rose-100" %>
+      </div>
+    </div>
+    <div>
+      <%= form.label :email, "E-mail", class: "mb-2 block text-sm font-medium text-gray-800" %>
+      <%= form.email_field :email,
+        placeholder: "seu@email.com",
+        class: "block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 shadow-sm outline-none transition focus:border-rose-500 focus:ring-2 focus:ring-rose-100" %>
+    </div>
+    <div>
+      <%= form.label :message, "Mensagem", class: "mb-2 block text-sm font-medium text-gray-800" %>
+      <%= form.textarea :message,
+        rows: 6,
+        placeholder: "Escreva sua mensagem...",
+        class: "block w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm leading-relaxed text-gray-900 shadow-sm outline-none transition focus:border-rose-500 focus:ring-2 focus:ring-rose-100" %>
+    </div>
+    <div class="flex justify-end pt-2">
+      <%= form.submit "Enviar mensagem",
+        class: "inline-flex cursor-pointer items-center justify-center rounded-xl bg-rose-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" %>
+    </div>
+  <% end %>
+</div>
