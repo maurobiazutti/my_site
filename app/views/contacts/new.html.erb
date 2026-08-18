@@ -1,1 +1,14 @@
-<%= render "form", contact: @contact %>
+<%= turbo_frame_tag "modal" do %>
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Enviar mensagem"
+    data-controller="modal"
+    data-action="click->modal#closeByBackdrop keyup@window->modal#closeByEsc"
+  >
+    <div class="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
+      <%= render "form", contact: @contact %>
+    </div>
+  </div>
+<% end %>
