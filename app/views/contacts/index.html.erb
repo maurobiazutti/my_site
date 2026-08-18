@@ -1,1 +1,65 @@
-<h1>index</h1>
+<div class="bg-gray-50 text-gray-900 min-h-screen py-10 px-4 sm:px-6 lg:px-8 font-sans">
+  <div class="mx-auto max-w-4xl">
+    <header class="mb-8 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight text-gray-950">
+          Mensagens recebidas
+        </h1>
+        <p class="mt-2 text-sm text-gray-600">
+          <%= pluralize(@contacts.size, "mensagem", "mensagens") %> no total.
+        </p>
+      </div>
+    </header>
+    <% if @contacts.any? %>
+      <div class="space-y-4">
+        <% @contacts.each do |contact| %>
+          <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-red-700 text-sm font-bold text-white">
+                  <%= contact.initials %>
+                </div>
+                <div>
+                  <h2 class="font-semibold text-gray-900"><%= contact.display_name %></h2>
+                  <p class="text-sm text-gray-500">
+                    <%= contact.created_at.strftime("%d/%m/%Y às %H:%M") %>
+                  </p>
+                </div>
+              </div>
+              <%= link_to contact_path(contact), class: "inline-flex items-center gap-1 text-sm font-medium text-rose-600 transition-colors hover:text-rose-700" do %>
+                Ver detalhes
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              <% end %>
+            </div>
+            <p class="mt-4 whitespace-pre-line text-sm leading-relaxed text-gray-700">
+              <%= truncate(contact.message, length: 280) %>
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3 border-t border-gray-100 pt-4 text-sm text-gray-600">
+              <% if contact.email.present? %>
+                <span class="inline-flex items-center gap-1.5">
+                  <%= render "shared/icon_mail", icon_class: "h-4 w-4 text-gray-400" %>
+                  <%= contact.email %>
+                </span>
+              <% end %>
+              <% if contact.phone.present? %>
+                <span class="inline-flex items-center gap-1.5">
+                  <%= render "shared/icon_phone", icon_class: "h-4 w-4 text-gray-400" %>
+                  <%= contact.phone %>
+                </span>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center">
+        <%= render "shared/icon_mail", icon_class: "mx-auto h-12 w-12 text-gray-300" %>
+        <h2 class="mt-4 text-lg font-semibold text-gray-900">Nenhuma mensagem recebida</h2>
+        <p class="mt-2 text-sm text-gray-600">Quando alguém enviar uma mensagem, ela aparecerá aqui.</p>
+      </div>
+    <% end %>
+  </div>
+  <%= turbo_frame_tag "modal" %>
+</div>

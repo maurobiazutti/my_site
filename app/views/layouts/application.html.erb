@@ -9,12 +9,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -27,10 +24,28 @@
           </span>
           <span class="font-bold tracking-tight text-gray-950">Mauro Biazutti</span>
         <% end %>
-        <div class="flex items-center gap-1 sm:gap-2">
-          <%= link_to "Sobre Mim", root_path, class: "rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-700" %>
-          <a href="#" class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-700">Artigos</a>
-          <a href="#contato" class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-700">Contato</a>
+        <div class="flex flex-1 items-center justify-center gap-1 sm:gap-2">
+          <%= nav_link_to "Sobre Mim", root_path %>
+          <%= nav_link_to "Artigos", "#" %>
+          <%= nav_link_to "Contato", "#contato" %>
+        </div>
+        <div class="flex items-center gap-2">
+          <% if Current.user.present? %>
+            <%= button_to "Sign out", session_path, method: :delete, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          <% else %>
+            <%= link_to "Sign in", new_session_path, class: "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-gray-300 border border-gray-200 bg-white hover:bg-gray-50 text-gray-800 min-h-9 py-1.5 rounded-lg px-4 text-sm" %>
+          <% end %>
+          <% messages_count = Contact.count %>
+          <div class="relative inline-block">
+            <%= link_to contacts_path, class: "block p-2 text-gray-600 hover:text-gray-900 focus:outline-none transition-colors", aria: { label: "Mensagens recebidas" } do %>
+              <%= render "shared/icon_mail", icon_class: "w-7 h-7" %>
+            <% end %>
+            <% if messages_count.positive? %>
+              <span class="absolute -top-1 -right-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-rose-600 px-1 text-xs font-bold text-white shadow-sm ring-2 ring-white">
+                <%= messages_count %>
+              </span>
+            <% end %>
+          </div>
         </div>
       </nav>
     </header>

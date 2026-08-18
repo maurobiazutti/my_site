@@ -1,4 +1,61 @@
-<div>
-  <h1 class="font-bold text-4xl">Contacts#show</h1>
-  <p>Find me in app/views/contacts/show.html.erb</p>
+<div class="bg-gray-50 text-gray-900 min-h-screen py-10 px-4 sm:px-6 lg:px-8 font-sans">
+  <div class="mx-auto max-w-3xl">
+    <div class="mb-6">
+      <%= link_to contacts_path, class: "inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 transition-colors hover:text-rose-700" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Voltar para mensagens
+      <% end %>
+    </div>
+
+    <article class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-gradient-to-r from-rose-50 to-white p-6">
+        <div class="flex items-center gap-4">
+          <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-red-700 text-xl font-bold text-white">
+            <%= @contact.initials %>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold tracking-tight text-gray-950">
+              <%= @contact.display_name %>
+            </h1>
+            <p class="text-sm text-gray-500"><%= l(@contact.created_at, format: :long) %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6 p-6">
+        <div>
+          <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">Mensagem</h2>
+          <p class="whitespace-pre-line rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm leading-relaxed text-gray-800">
+            <%= @contact.message.presence || "Sem mensagem." %>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Dados de contato</h2>
+          <dl class="space-y-3">
+            <% if @contact.email.present? %>
+              <div class="flex items-center gap-3">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+                  <%= render "shared/icon_mail", icon_class: "h-4 w-4" %>
+                </span>
+                <dt class="sr-only">E-mail</dt>
+                <dd><%= link_to @contact.email, "mailto:#{@contact.email}", class: "text-sm text-gray-700 hover:text-rose-700 hover:underline" %></dd>
+              </div>
+            <% end %>
+            <% if @contact.phone.present? %>
+              <div class="flex items-center gap-3">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+                  <%= render "shared/icon_phone", icon_class: "h-4 w-4" %>
+                </span>
+                <dt class="sr-only">Telefone</dt>
+                <dd><%= link_to @contact.phone, "tel:#{@contact.phone}", class: "text-sm text-gray-700 hover:text-rose-700 hover:underline" %></dd>
+              </div>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+    </article>
+  </div>
 </div>
