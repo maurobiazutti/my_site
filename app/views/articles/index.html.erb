@@ -1,154 +1,128 @@
+<%# BOTÃO PARA CRIAR ARTIGOS %>
+<div class="flex justify-end items-end border-b border-gray-200 pb-2 mt-2">
+  <%# Botão visível apenas para usuários autenticados %>
+  <% if authenticated? %>
+    <%= link_to new_article_path, class: "inline-flex items-center gap-1.5 mr-3 px-3 py-1.5 text-xs font-semibold text-indigo-600 hover:text-white bg-indigo-50 hover:bg-indigo-600 rounded-lg transition-colors border border-indigo-100" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+      </svg>
+      Novo Artigo
+    <% end %>
+  <% end %>
+</div>
+<%# ########################################################################## %>
+<%# ########################################################################## %>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <!-- ========================================== -->
-  <!-- HERO / ARTIGO EM DESTAQUE (LARGURA TOTAL)   -->
-  <!-- ========================================== -->
-  <section class="mb-12">
-    <div class="relative rounded-2xl overflow-hidden bg-gray-900 text-white shadow-xl group">
-      <!-- Imagem de fundo com overlay escuro -->
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" 
-           alt="Capa do artigo em destaque" 
-           class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500 ease-out" />
-      <div class="relative z-10 p-6 sm:p-10 lg:p-12 max-w-3xl">
-        <span class="inline-block px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-full uppercase tracking-wider mb-4">
-          Tecnologia
-        </span>
-        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-4 leading-tight">
-          O Futuro do Desenvolvimento Web com Rails 8 e Tailwind CSS
-        </h1>
-        <p class="text-gray-200 text-sm sm:text-base mb-6 line-clamp-2">
-          Descubra como as novas ferramentas nativas do ecossistema Rails simplificam a criação de aplicações modernas e rápidas sem depender de setups complexos.
-        </p>
-        <div class="flex items-center text-xs sm:text-sm text-gray-300 gap-4">
-          <span class="font-medium text-white">Por Mauro</span>
-          <span>•</span>
-          <span>19 de Ago, 2026</span>
-          <span>•</span>
-          <span>5 min de leitura</span>
+  <%# ========================================== %>
+  <%# HERO / ARTIGO EM DESTAQUE                 %>
+  <%# ========================================== %>
+  <% if @featured_article %>
+    <section class="mb-12">
+      <div class="relative rounded-2xl overflow-hidden bg-gray-900 text-white shadow-xl group">
+        <% if @featured_article.cover.attached? %>
+          <%= image_tag @featured_article.cover, 
+                        class: "absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500 ease-out", 
+                        alt: @featured_article.title %>
+        <% else %>
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" 
+               alt="Capa padrão" 
+               class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500 ease-out" />
+        <% end %>
+        <div class="relative z-10 p-6 sm:p-10 lg:p-12 max-w-3xl">
+          <span class="inline-block px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-full uppercase tracking-wider mb-4">
+            <%= @featured_article.category.name %>
+          </span>
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-4 leading-tight">
+            <%= link_to @featured_article.title, article_path(@featured_article), class: "hover:underline" %>
+          </h1>
+          <p class="text-gray-200 text-sm sm:text-base mb-6 line-clamp-2">
+            <%= @featured_article.excerpt %>
+          </p>
+          <div class="flex items-center text-xs sm:text-sm text-gray-300 gap-4">
+            <span class="font-medium text-white">Por <%= @featured_article.author_name %></span>
+            <span>•</span>
+            <span><%= l(@featured_article.published_at, format: :short) if @featured_article.published_at %></span>
+            <span>•</span>
+            <span><%= @featured_article.reading_time %> min de leitura</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- ========================================== -->
-  <!-- GRID PRINCIPAL DE 2 COLUNAS (70/30)        -->
-  <!-- ========================================== -->
+    </section>
+  <% end %>
+  <%# ========================================== %>
+  <%# GRID PRINCIPAL DE 2 COLUNAS (70/30)        %>
+  <%# ========================================== %>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <!-- COLUNA PRINCIPAL (8 de 12 colunas = ~66%) -->
+    <%# COLUNA PRINCIPAL (8 de 12 colunas) %>
     <main class="lg:col-span-8 space-y-12">
-      <!-- SEÇÃO: MAIS RECENTES -->
       <section>
         <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
           <h2 class="text-xl font-bold text-gray-900 tracking-tight">Mais Recentes</h2>
-          <a href="#" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Ver todos &rarr;</a>
         </div>
-        <!-- Grid de Cards de Artigos -->
+        <%# Grid de Cards de Artigos %>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Card de Artigo 1 -->
-          <article class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Capa" class="h-48 w-full object-cover">
-            <div class="p-5 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Backend</span>
-                <h3 class="mt-2 text-lg font-bold text-gray-900 hover:text-indigo-600 leading-snug">
-                  <a href="#">Como otimizar queries no PostgreSQL evitando problemas N+1</a>
-                </h3>
-                <p class="mt-2 text-gray-600 text-sm line-clamp-2">
-                  Aprenda a utilizar o includes e eager_load no ActiveRecord para turbinar a performance das suas listagens.
-                </p>
+          <% @recent_articles.each do |article| %>
+            <article class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
+              <% if article.cover.attached? %>
+                <%= image_tag article.cover, class: "h-48 w-full object-cover", alt: article.title %>
+              <% else %>
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Capa" class="h-48 w-full object-cover">
+              <% end %>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">
+                    <%= article.category.name %>
+                  </span>
+                  <h3 class="mt-2 text-lg font-bold text-gray-900 hover:text-indigo-600 leading-snug">
+                    <%= link_to article.title, article_path(article) %>
+                  </h3>
+                  <p class="mt-2 text-gray-600 text-sm line-clamp-2">
+                    <%= article.excerpt %>
+                  </p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                  <span><%= l(article.published_at, format: :short) if article.published_at %></span>
+                  <span><%= article.reading_time %> min de leitura</span>
+                </div>
               </div>
-              <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                <span>18 de Ago, 2026</span>
-                <span>4 min de leitura</span>
-              </div>
-            </div>
-          </article>
-          <!-- Card de Artigo 2 -->
-          <article class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
-            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Capa" class="h-48 w-full object-cover">
-            <div class="p-5 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Segurança</span>
-                <h3 class="mt-2 text-lg font-bold text-gray-900 hover:text-indigo-600 leading-snug">
-                  <a href="#">Boas práticas de autenticação e rotas protegidas</a>
-                </h3>
-                <p class="mt-2 text-gray-600 text-sm line-clamp-2">
-                  Entenda os cuidados fundamentais ao estruturar logins, tokens de sessão e controle de acessos no seu sistema.
-                </p>
-              </div>
-              <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                <span>15 de Ago, 2026</span>
-                <span>6 min de leitura</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-      <!-- SEÇÃO: RECOMENDADOS -->
-      <section class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-        <h2 class="text-xl font-bold text-gray-900 tracking-tight mb-4">Recomendados para você</h2>
-        <div class="space-y-4">
-          <!-- Item Recomendado Horizontal Simples -->
-          <article class="flex gap-4 items-center bg-white p-3 rounded-xl border border-gray-100 shadow-sm hover:border-indigo-200 transition-colors">
-            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=200&q=80" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" alt="Thumbnail">
-            <div>
-              <span class="text-xs font-medium text-purple-600">DevOps</span>
-              <h4 class="font-semibold text-gray-900 text-sm hover:text-indigo-600">
-                <a href="#">Implantando aplicações Rails com Docker e Kamal sem dor de cabeça</a>
-              </h4>
-              <span class="text-xs text-gray-400">12 de Ago, 2026</span>
-            </div>
-          </article>
+            </article>
+          <% end %>
         </div>
       </section>
     </main>
-    <!-- SIDEBAR / LATERAL (4 de 12 colunas = ~33%) -->
+    <%# SIDEBAR / LATERAL (4 de 12 colunas) %>
     <aside class="lg:col-span-4 space-y-8">
-      <!-- WIDGET: MAIS VISTOS / POPULARES -->
+      <%# WIDGET: MAIS VISTOS %>
       <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
         <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
           Mais Vistos
         </h3>
         <ol class="space-y-4">
-          <!-- Item 1 -->
-          <li class="flex items-start gap-3">
-            <span class="text-2xl font-black text-indigo-200 leading-none">01</span>
-            <div>
-              <h4 class="text-sm font-semibold text-gray-900 hover:text-indigo-600 line-clamp-2">
-                <a href="#">Guia completo de arquitetura de software para iniciantes em backend</a>
-              </h4>
-              <span class="text-xs text-gray-400 mt-1 block">1.2k visualizações</span>
-            </div>
-          </li>
-          <!-- Item 2 -->
-          <li class="flex items-start gap-3">
-            <span class="text-2xl font-black text-indigo-200 leading-none">02</span>
-            <div>
-              <h4 class="text-sm font-semibold text-gray-900 hover:text-indigo-600 line-clamp-2">
-                <a href="#">Estruturando o Action Text para suportar múltiplos uploads de imagem</a>
-              </h4>
-              <span class="text-xs text-gray-400 mt-1 block">850 visualizações</span>
-            </div>
-          </li>
-          <!-- Item 3 -->
-          <li class="flex items-start gap-3">
-            <span class="text-2xl font-black text-indigo-200 leading-none">03</span>
-            <div>
-              <h4 class="text-sm font-semibold text-gray-900 hover:text-indigo-600 line-clamp-2">
-                <a href="#">Como organizar seus controllers RESTful no Rails de forma limpa</a>
-              </h4>
-              <span class="text-xs text-gray-400 mt-1 block">620 visualizações</span>
-            </div>
-          </li>
+          <% @popular_articles.each_with_index do |article, index| %>
+            <li class="flex items-start gap-3">
+              <span class="text-2xl font-black text-indigo-200 leading-none"><%= sprintf('%02d', index + 1) %></span>
+              <div>
+                <h4 class="text-sm font-semibold text-gray-900 hover:text-indigo-600 line-clamp-2">
+                  <%= link_to article.title, article_path(article) %>
+                </h4>
+                <span class="text-xs text-gray-400 mt-1 block"><%= article.views_count %> visualizações</span>
+              </div>
+            </li>
+          <% end %>
         </ol>
       </div>
-      <!-- WIDGET: NAVEGAÇÃO POR CATEGORIAS -->
+      <%# WIDGET: CATEGORIAS %>
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
         <h3 class="text-base font-bold text-gray-900 mb-3">Categorias</h3>
         <div class="flex flex-wrap gap-2">
-          <a href="#" class="px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors">Ruby on Rails (12)</a>
-          <a href="#" class="px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors">PostgreSQL (5)</a>
-          <a href="#" class="px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors">Tailwind CSS (8)</a>
-          <a href="#" class="px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors">DevOps (4)</a>
+          <% @categories.each do |category| %>
+            <%= link_to category_path(category), class: "px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors" do %>
+              <%= category.name %> (<%= category.articles_count %>)
+            <% end %>
+          <% end %>
         </div>
       </div>
     </aside>

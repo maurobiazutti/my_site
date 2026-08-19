@@ -1,0 +1,93 @@
+<%= form_with(model: article, class: "space-y-6") do |form| %>
+  <%# Exibição de erros de validação %>
+  <% if article.errors.any? %>
+    <div class="rounded-xl bg-red-50 p-4 border border-red-200">
+      <div class="flex">
+        <div class="shrink-0">
+          <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">
+            <%= pluralize(article.errors.count, "erro proibidip", plural: "erros proibiram") %> este artigo de ser salvo:
+          </h3>
+          <ul class="mt-2 text-sm text-red-700 list-disc list-inside space-y-1">
+            <% article.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-sm space-y-6">
+    <%# Título do Artigo %>
+    <div>
+      <%= form.label :title, "Título do Artigo", class: "block text-sm font-bold text-gray-900 mb-2" %>
+      <%= form.text_field :title, 
+                          placeholder: "Ex: O Futuro do Desenvolvimento Web com Rails 8", 
+                          class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-3 px-4" %>
+    </div>
+    <%# Grid de 2 colunas: Categoria e Status %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <%# Select de Categoria %>
+      <div>
+        <%= form.label :category_id, "Categoria", class: "block text-sm font-bold text-gray-900 mb-2" %>
+        <%= form.collection_select :category_id, Category.all, :id, :name, 
+                                   { prompt: "Selecione uma categoria" }, 
+                                   class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-3 px-4 bg-white" %>
+      </div>
+      <%# Select de Status %>
+      <div>
+        <%= form.label :status, "Status de Publicação", class: "block text-sm font-bold text-gray-900 mb-2" %>
+        <%= form.select :status, 
+                        [ ['Rascunho', 'draft'], ['Publicado', 'published'] ], 
+                        {}, 
+                        class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-3 px-4 bg-white" %>
+      </div>
+    </div>
+    <%# Data de Publicação %>
+    <div>
+      <%= form.label :published_at, "Data de Publicação", class: "block text-sm font-bold text-gray-900 mb-2" %>
+      <%= form.datetime_field :published_at, 
+                              class: "block w-full sm:w-auto rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-3 px-4" %>
+    </div>
+    <%# Imagem de Capa (Active Storage) %>
+    <div>
+      <%= form.label :cover, "Imagem de Capa", class: "block text-sm font-bold text-gray-900 mb-2" %>
+      <% if article.cover.attached? %>
+        <div class="mb-3 flex items-center gap-4">
+          <%= image_tag article.cover, class: "h-20 w-32 object-cover rounded-lg border border-gray-200" %>
+          <span class="text-xs text-gray-500">Capa atual. Envie um novo arquivo caso queira substituir.</span>
+        </div>
+      <% end %>
+      <%= form.file_field :cover, 
+                          accept: 'image/*', 
+                          class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer" %>
+    </div>
+    <%# Resumo / Excerpt %>
+    <div>
+      <%= form.label :excerpt, "Resumo (Excerpt)", class: "block text-sm font-bold text-gray-900 mb-1" %>
+      <span class="block text-xs text-gray-500 mb-2">Pequeno texto de introdução exibido nos cards da home.</span>
+      <%= form.text_area :excerpt, 
+                         rows: 2, 
+                         placeholder: "Descrição curta para engajar a leitura...", 
+                         class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-3 px-4" %>
+    </div>
+    <%# Conteúdo do Artigo (Action Text / Trix Editor) %>
+    <div>
+      <%= form.label :content, "Conteúdo do Artigo", class: "block text-sm font-bold text-gray-900 mb-2" %>
+      <div class="prose max-w-none">
+        <%= form.rich_text_area :content, 
+                                class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 min-h-[300px]" %>
+      </div>
+    </div>
+  </div>
+  <%# Botões de Ação %>
+  <div class="flex items-center justify-end gap-3 pt-2">
+    <%= link_to "Cancelar", articles_path, class: "px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 rounded-xl hover:bg-gray-100 transition-colors" %>
+    <%= form.submit "Salvar Artigo", 
+                    class: "px-6 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm hover:shadow transition-all cursor-pointer" %>
+  </div>
+<% end %>
