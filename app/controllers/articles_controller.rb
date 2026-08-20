@@ -4,10 +4,15 @@ class ArticlesController < ApplicationController
     # Artigo Hero (o mais recente publicado)
     @featured_article = Article.published.recent.first
 
-    # Lista dos mais recentes (excluindo o que já está no Hero para não repetir)
-    @recent_articles = Article.published.recent
-                              .where.not(id: @featured_article&.id)
-                              .limit(6)
+  # Lista dos mais recentes (excluindo o que já está no Hero para não repetir)
+  # @recent_articles = Article.published.recent
+  #                           .where.not(id: @featured_article&.id)
+  #                           .limit(6)
+
+  # Pagina os artigos recentes (6 por página)
+  @pagy, @recent_articles = pagy(
+    Article.published.recent.where.not(id: @featured_article&.id)
+  )
 
     # Sidebar: Mais vistos
     @popular_articles = Article.published.popular.limit(5)
