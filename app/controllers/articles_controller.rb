@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: %i[ show edit update destroy ]
    allow_unauthenticated_access
   def index
     # Artigo Hero (o mais recente publicado)
@@ -45,6 +46,19 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @article.update(article_params)
+      redirect_to @article, notice: "Artigo atualizado com Sucesso."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @article.destroy!
+    redirect_to articles_path, notice: "Artigo excluído com sucesso."
   end
 
   private
