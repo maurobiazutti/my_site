@@ -8,3 +8,8 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Espaçamento maior entre as imagens anexadas e o texto no corpo do artigo */
+.trix-content .attachment--preview {
+  margin-block: 2.5rem;
+}

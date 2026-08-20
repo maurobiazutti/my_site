@@ -1,14 +1,29 @@
-<%# BOTÃO PARA CRIAR ARTIGOS %>
-<div class="flex justify-end items-end border-b border-gray-200 pb-2 mt-2">
-  <%# Botão visível apenas para usuários autenticados %>
-  <% if authenticated? %>
-    <%= link_to new_article_path, class: "inline-flex items-center gap-1.5 mr-3 px-3 py-1.5 text-xs font-semibold text-indigo-600 hover:text-white bg-indigo-50 hover:bg-indigo-600 rounded-lg transition-colors border border-indigo-100" do %>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-      </svg>
-      Novo Artigo
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-6">
+  <div class="relative flex items-center justify-center border-b border-gray-200 pb-4">
+    <%# 1. ESPAÇADOR/ESTRUTURA VAZIA NA ESQUERDA (Para balancear a largura do botão e manter o centro perfeito) %>
+    <% if authenticated? %>
+      <div class="hidden sm:block w-32 shrink-0"></div>
     <% end %>
-  <% end %>
+    <%# 2. CATEGORIAS (Centralizadas no meio) %>
+    <div class="flex flex-wrap items-center justify-center gap-2 flex-1">
+      <% @categories.each do |category| %>
+        <%= link_to category_path(category), class: "px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors shadow-sm" do %>
+          <%= category.name %> <span class="text-gray-400 font-normal">(<%= category.articles_count %>)</span>
+        <% end %>
+      <% end %>
+    </div>
+    <%# 3. BOTÃO NOVO ARTIGO (Fixado totalmente à direita) %>
+    <% if authenticated? %>
+      <div class="sm:absolute sm:right-0 shrink-0">
+        <%= link_to new_article_path, class: "inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-indigo-600 hover:text-white bg-indigo-50 hover:bg-indigo-600 rounded-lg transition-all border border-indigo-100 shadow-sm" do %>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          Novo Artigo
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 <%# ########################################################################## %>
 <%# ########################################################################## %>
@@ -114,16 +129,27 @@
           <% end %>
         </ol>
       </div>
-      <%# WIDGET: CATEGORIAS %>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-        <h3 class="text-base font-bold text-gray-900 mb-3">Categorias</h3>
-        <div class="flex flex-wrap gap-2">
-          <% @categories.each do |category| %>
-            <%= link_to category_path(category), class: "px-3 py-1.5 bg-white text-xs font-medium text-gray-700 rounded-lg border border-gray-200 hover:border-indigo-500 hover:text-indigo-600 transition-colors" do %>
-              <%= category.name %> (<%= category.articles_count %>)
-            <% end %>
+      <%# WIDGET: RECOMENDADOS %>
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Recomendados 
+        </h3>
+        <ol class="space-y-4">
+          <% @popular_articles.each_with_index do |article, index| %>
+            <li class="flex items-start gap-3">
+              <span class="text-2xl font-black text-indigo-200 leading-none"><%= sprintf('%02d', index + 1) %></span>
+              <div>
+                <h4 class="text-sm font-semibold text-gray-900 hover:text-indigo-600 line-clamp-2">
+                  <%= link_to article.title, article_path(article) %>
+                </h4>
+                <span class="text-xs text-gray-400 mt-1 block"><%= article.views_count %> visualizações</span>
+              </div>
+            </li>
           <% end %>
-        </div>
+        </ol>
       </div>
     </aside>
   </div>
