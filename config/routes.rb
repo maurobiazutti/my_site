@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   root "about#index"
   resources :contacts, only: [ :index, :show, :new, :create ]
   resources :categories
-  resources :articles
+  resources :articles do
+    member do
+      post :vote
+    end
+  end
 end

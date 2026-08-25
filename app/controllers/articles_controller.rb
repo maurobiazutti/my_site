@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[ show edit update destroy vote ]
    allow_unauthenticated_access
   def index
     # Artigo Hero (o mais recente publicado)
@@ -30,6 +30,40 @@ class ArticlesController < ApplicationController
 
     # Incrementa as visualizações para a sidebar de "Mais Vistos"
     @article.increment!(:views_count)
+
+    # Registra o voto atual do visitante a partir da session para exibir na view
+    @user_vote = session.dig(:votes, @article.id.to_s)
+  end
+
+ def vote
+    kind = params[:kind] # "like" ou "dislike"
+    article_id = @article.id.to_s
+
+    # Inicializa o hash de votos na sessão se não existir
+    session[:votes] ||= {}
+    previous_vote = session[:votes][article_id]
+
+    if previous_vote == kind
+      # 1. Clique duplo na mesma opção -> Remove o voto (Toggle)
+      decrement_vote(kind)
+      session[:votes].delete(article_id)
+    elsif previous_vote.present?
+      # 2. Trocou de opinião (ex: de Like para Dislike) -> Remove o anterior e soma o novo
+      decrement_vote(previous_vote)
+      increment_vote(kind)
+      session[:votes][article_id] = kind
+    else
+      # 3. Novo voto -> Soma o voto
+      increment_vote(kind)
+      session[:votes][article_id] = kind
+    end
+
+    @user_vote = session[:votes][article_id]
+
+    respond_to do |format|
+      format.html { redirect_to @article }
+      format.turbo_stream
+    end
   end
 
   def new
@@ -78,5 +112,14 @@ class ArticlesController < ApplicationController
       :cover,
       :content
     )
+  end
+
+  def increment_vote(kind)
+    @article.increment!("#{kind}s_count")
+  end
+
+  def decrement_vote(kind)
+    # decrement! não deixa o contador cair abaixo de 0 se o método for chamado corretamente
+    @article.decrement!("#{kind}s_count") if @article.send("#{kind}s_count") > 0
   end
 end
