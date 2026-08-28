@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "article_votes_#{@article.id}" do %>
+  <%= render "articles/votes", article: @article, user_vote: @user_vote %>
+<% end %>

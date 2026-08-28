@@ -96,17 +96,28 @@
     <div class="prose prose-lg prose-indigo max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-img:rounded-2xl prose-img:shadow-md">
       <%= @article.content %>
     </div>
-    <%# Rodapé do Artigo: Rodapé de Artigo e Voltar %>
-    <footer class="mt-16 pt-8 border-t border-slate-100 flex items-center justify-between">
+
+    <%# Barra de Engajamento: Visualizações + Likes/Dislikes %>
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-4">
+      <div class="flex items-center gap-2 text-sm text-slate-600">
+        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        </svg>
+        <span class="font-semibold text-slate-900"><%= @article.views_count %></span>
+        <span>visualizações</span>
+      </div>
+      <%= render "articles/votes", article: @article, user_vote: @user_vote %>
+    </div>
+
+    <%# Rodapé do Artigo: Voltar %>
+    <footer class="mt-8 pt-8 border-t border-slate-100 flex items-center justify-between">
       <%= link_to articles_path, class: "inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors" do %>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
         Ver todos os artigos
       <% end %>
-      <div class="text-xs text-slate-400">
-        <%= @article.views_count %> visualizações
-      </div>
     </footer>
   </main>
 </article>

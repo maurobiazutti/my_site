@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "article_votes_#{article.id}" do %>
+  <div class="votes-container" style="display: flex; gap: 10px;">
+    <%# Botão de Like %>
+    <%= button_to vote_article_path(article, kind: :like), 
+                  method: :post, 
+                  class: "btn-vote #{'active' if user_vote == 'like'}" do %>
+      👍 <span><%= article.likes_count.to_i %></span>
+    <% end %>
+    <%# Botão de Dislike %>
+    <%= button_to vote_article_path(article, kind: :dislike), 
+                  method: :post, 
+                  class: "btn-vote #{'active' if user_vote == 'dislike'}" do %>
+      👎 <span><%= article.dislikes_count.to_i %></span>
+    <% end %>
+  </div>
+<% end %>
