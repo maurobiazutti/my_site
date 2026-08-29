@@ -1,6 +1,5 @@
 class Article < ApplicationRecord
   belongs_to :category
-  has_many :comments, dependent: :destroy
 
   # Active Storage (Capa do artigo)
   has_one_attached :cover
