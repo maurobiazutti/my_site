@@ -1,118 +1,138 @@
-# Meu Site Pessoal
+# Meu Site Pessoal & Blog
 
-Site pessoal do Mauro Biazutti — desenvolvedor Full Stack Ruby on Rails. Uma vitrine para apresentação profissional, onde visitantes conhecem meu perfil, veem meu currículo e podem entrar em contato.
+Olá, eu sou **Mauro Biazutti**, desenvolvedor  **Full Stack Ruby on Rails**.
 
-## Sobre o Projeto
+Este projeto é meu espaço pessoal na internet, criado para reunir em um único lugar minha **trajetória profissional, experiências, conhecimentos e estudos**.
 
-Este é um site pessoal construído com **Ruby on Rails**, pensado para:
+Mais do que um portfólio, a ideia é construir um espaço que represente minha evolução como desenvolvedor e onde eu possa compartilhar aquilo que aprendo ao longo do caminho.
 
-- **Me apresentar**: perfil com foto, nome, cargo e resumo profissional.
-- **Exibir meu currículo online**: seções de "Sobre Mim", "Experiência & Projetos", "Educação" e "Tecnologias & Ferramentas".
-- **Receber mensagens**: formulário de contato em modal que grava as mensagens no banco, com uma área administrativa (login) para listar e ler cada mensagem.
+## Sobre o Site
 
-## Funcionalidades
+O site é dividido principalmente em duas áreas: **Sobre Mim** e **Blog**.
 
-### Página "Sobre Mim" (página inicial)
+### 👨‍💻 Sobre Mim
 
-O coração do site. Nela o visitante encontra:
+A área "Sobre Mim" funciona como meu currículo online.
 
-- **Perfil** — foto, nome e link para o GitHub.
-- **Resumo profissional** — cargo atual e uma breve descrição do que faço.
-- **Sobre Mim** — texto apresentando minha trajetória, foco no ecossistema Ruby e diferenciais.
-- **Experiência & Projetos** — linha do tempo com cargos, empresas, períodos e descrição das atividades, em blocos expansíveis.
-- **Educação** — formações acadêmicas e cursos, também em blocos expansíveis.
-- **Tecnologias & Ferramentas** — tags com as tecnologias que utilizo no dia a dia.
-- **Ações rápidas** — botões para baixar o CV, chamar no WhatsApp e abrir o GitHub.
+Nela, você pode conhecer um pouco mais sobre minha trajetória profissional, minhas experiências, projetos, formação e as tecnologias com as quais trabalho.
 
-### Mensagens de contato
+A proposta é ir além de uma lista de cargos e tecnologias. Quero mostrar **quem sou como profissional, o que venho construindo e quais conhecimentos fazem parte da minha jornada como desenvolvedor**.
 
-- **Formulário público** — abrindo em modal ("Enviar Mensagem"), sem necessidade de login.
-- **Caixa de entrada** — listagem de todas as mensagens recebidas (`/contacts`), com preview, dados do remetente e link para o detalhe.
-- **Detalhe da mensagem** (`/contacts/:id`) — mensagem completa e dados de contato clicáveis (e-mail e telefone).
-- **Proteção** — a listagem e o detalhe exigem login; validações garantem nome e e-mail preenchidos.
+Entre as informações disponíveis estão:
 
-### Autenticação
+- Minha apresentação e trajetória profissional
+- Experiências profissionais
+- Projetos e atividades desenvolvidas
+- Formação acadêmica e cursos
+- Tecnologias e ferramentas que utilizo
+- Links para meus projetos e perfis profissionais
+- Meu currículo para consulta
 
-- **Sign in / Sign out** — sessão por cookie, senha com `has_secure_password` (bcrypt).
-- **Recuperação de senha** — e-mail de reset (rotas `/passwords`).
-- **Navegação condicional** — o menu mostra "Sign in" ou "Sign out" conforme o estado da sessão, e o ícone de mensagens exibe um badge com a contagem de mensagens recebidas.
+## ✍️ Blog
 
-### Área de "Articles" (em desenvolvimento)
+O Blog é o espaço onde compartilho **artigos, estudos e experiências sobre tecnologia e desenvolvimento de software**.
 
-Futuro espaço para escrever artigos de tecnologia. A ideia é:
+A ideia não é apenas publicar tutoriais, mas também registrar meu processo de aprendizado e transformar aquilo que estudo em conteúdo que possa ser útil para outras pessoas.
 
-- Publicação de artigos técnicos (Ruby, Rails, boas práticas, etc.).
-- **Área de comentários** liberada para os leitores interagirem com o conteúdo.
+Os assuntos passam principalmente pelo universo de **Ruby, Rails, desenvolvimento backend, bancos de dados, APIs, infraestrutura, testes, performance e boas práticas de desenvolvimento**.
 
-## Stack
+### Alguns dos temas que fazem parte do Blog
 
-- **Ruby on Rails 8** — framework principal.
-- **PostgreSQL** — banco de dados.
-- **Tailwind CSS** — estilização (via `tailwindcss-rails`).
-- **Hotwire (Turbo + Stimulus)** — interatividade sem complicação.
-- **Importmap** — JavaScript sem build.
-- **bcrypt** — hashing de senhas para autenticação.
+- **Git** — versionamento, fluxo de trabalho e boas práticas
+- **Docker** — containers e ambientes de desenvolvimento
+- **Kamal** — deploy e publicação de aplicações Rails
+- **APIs** — conceitos, construção e integração
+- **HTTP** — fundamentos da comunicação na web
+- **Ruby e Algoritmos** — lógica, estruturas de dados e resolução de problemas
+- **PostgreSQL** — banco de dados, consultas e otimização
+- **N+1** — identificação e solução de problemas de performance
+- **Ruby on Rails** — recursos, arquitetura e boas práticas
+- **RSpec** — testes automatizados e desenvolvimento orientado por testes
+- **Segurança** — conceitos e práticas para aplicações web mais seguras
+- **Jobs** — processamento em segundo plano e tarefas assíncronas
+- **Performance** — identificação de gargalos e otimização de aplicações
+- **Hotwire** — interfaces modernas utilizando Turbo e Stimulus
 
-## Requisitos
+O conteúdo do Blog também serve como um registro da minha evolução:
 
-- Ruby 3.x
-- Rails 8.1.x
-- Node.js (opcional, para o build do Tailwind)
+> **Estudar, construir, testar, entender e compartilhar.**
 
-## Configuração e Execução
+## 📬 Entre em Contato
 
-```bash
-# Instalar as dependências
-bundle install
+O site também possui um espaço para contato.
 
-# Preparar o banco de dados
-bin/rails db:prepare
+Se quiser conversar sobre desenvolvimento, tecnologia, projetos ou oportunidades profissionais, é possível enviar uma mensagem diretamente pelo site.
 
-# Iniciar o servidor de desenvolvimento
-bin/dev
-```
+As mensagens ficam disponíveis em uma área privada, permitindo que eu acompanhe e responda aos contatos recebidos.
 
-Acesse em `http://localhost:3000`.
+## 🎯 Objetivo
 
-## Estrutura Principal
+Este site nasceu com alguns objetivos simples:
 
-```
-app/
-├── controllers/
-│   ├── about_controller.rb        # Página inicial (Sobre Mim) — pública
-│   ├── contacts_controller.rb     # Mensagens (new/create públicos; index/show com login)
-│   ├── sessions_controller.rb     # Sign in / Sign out
-│   ├── passwords_controller.rb    # Recuperação de senha
-│   └── concerns/
-│       └── authentication.rb      # Autenticação compartilhada
-├── models/
-│   ├── contact.rb                 # Mensagens de contato (scope :recent, validações)
-│   ├── user.rb                    # Usuário admin (has_secure_password)
-│   ├── session.rb                 # Sessões por cookie
-│   └── current.rb                 # CurrentAttributes (usuário da sessão)
-├── helpers/
-│   └── application_helper.rb      # nav_link_to
-└── views/
-    ├── about/                     # Página "Sobre Mim" + timeline
-    ├── contacts/                  # Formulário (modal), listagem e detalhe
-    ├── sessions/                  # Sign in
-    ├── passwords/                 # Reset de senha
-    ├── shared/                    # Partials de ícones e botão CV
-    └── layouts/
-        └── application.html.erb   # Layout com navbar, login e badge de mensagens
-```
+- **Apresentar minha trajetória profissional**
+- **Centralizar meu currículo e projetos**
+- **Compartilhar conhecimento**
+- **Registrar meus estudos e aprendizados**
+- **Documentar minha evolução como desenvolvedor**
+- **Criar um espaço onde outras pessoas possam encontrar conteúdo útil sobre tecnologia**
 
-## Roadmap
+Acredito que desenvolver software também é uma jornada contínua de aprendizado.
 
-- [x] Página "Sobre Mim" com perfil e currículo
-- [x] Formulário de contato com mensagens salvas no banco
-- [x] Área de mensagens (listagem e detalhe) com login
-- [x] Autenticação (sign in/out e recuperação de senha)
-- [ ] Área de "Articles" com publicação de artigos de tecnologia
-- [ ] Sistema de comentários nos artigos
-- [ ] Download do currículo (CV) em PDF
-- [ ] Marcar mensagens como lidas
+Por isso, este site não é apenas uma vitrine do que já fiz, mas também um registro de **onde estou e para onde estou evoluindo**.
 
-## Licença
+## 🚀 Em constante evolução
 
-Este projeto é de uso pessoal. Entre em contato para mais informações.
+O site está em desenvolvimento contínuo.
+
+Novos conteúdos, melhorias e funcionalidades serão adicionados conforme o projeto evolui.
+
+A intenção é que, com o tempo, ele se torne não apenas meu portfólio, mas também uma **base de conhecimento pessoal e um espaço para compartilhar experiências com a comunidade de desenvolvimento**.
+
+---
+
+## 📌 Status do Projeto
+
+O site está **ativo e em evolução**.
+
+### Concluído
+
+- [x] Página de apresentação
+- [x] Currículo online
+- [x] Experiências profissionais
+- [x] Formação e cursos
+- [x] Tecnologias e ferramentas
+- [x] Formulário de contato
+- [x] Área privada para mensagens
+- [x] Sistema de autenticação
+
+### Em desenvolvimento
+
+- [x] Blog de artigos
+- [x] Categorias de artigos
+- [ ] Sistema de comentários
+- [ ] Download do currículo em PDF
+- [ ] Controle de mensagens lidas
+- [ ] Novos conteúdos e estudos
+
+---
+
+## 🛠️ Construído com
+
+O projeto é desenvolvido utilizando principalmente:
+
+- Ruby
+- Ruby on Rails
+- PostgreSQL
+- Tailwind CSS
+- Hotwire
+- JavaScript
+
+A tecnologia é apenas o meio.
+
+O objetivo principal é **construir um espaço que represente minha trajetória e compartilhar conhecimento através dele**.
+
+---
+
+## 📄 Licença
+
+Este é um projeto pessoal desenvolvido para meu portfólio e compartilhamento de conhecimento.
