@@ -78,7 +78,7 @@
     <%# Conteúdo do Artigo (Action Text / Trix Editor) %>
     <div>
       <%= form.label :content, "Conteúdo do Artigo", class: "block text-sm font-bold text-gray-900 mb-2" %>
-      <div class="prose max-w-none">
+      <div class="prose max-w-none trix-content">
         <%= form.rich_text_area :content, 
                                 class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 min-h-[300px]" %>
       </div>

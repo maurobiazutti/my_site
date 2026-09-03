@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* Força os bullets a aparecerem apenas dentro do conteúdo do Action Text */
+.trix-content ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.trix-content ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.trix-content li {
+  display: list-item !important;
+}
