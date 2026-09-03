@@ -237,7 +237,11 @@
         Vamos conversar ou construir algo juntos?
       </h3>
       <p class="text-[#9AA1AC] text-sm sm:text-base max-w-lg mx-auto">
-        Fique à vontade para acompanhar meus projetos no GitHub ou entrar em contato direto por WhatsApp ou E-mail.
+        Fique à vontade para acompanhar meu <span class = "font-bold uppercase underline tracking-wide [&_a]:!text-[#E23D5B]"> <%= link_to "Blog", articles_path %> </span>, 
+        onde compartilho meus conhecimentos sobre tecnologia e evolução. Se preferir, entre em contato direto pelo 
+        <span class = "font-bold uppercase underline tracking-wide [&_a]:!text-[#25D366]"> <%= link_to "WhatsApp", "https://wa.me/5532988272267", target: "_blank", rel: "noopener noreferrer" %> </span>
+        ou envie-me uma
+        <span class = "font-bold uppercase underline tracking-wide [&_a]:!text-[#E23D5B]"> <%= link_to "Mensagem", new_contact_path %> </span>.
       </p>
       <div class="pt-2 flex flex-wrap justify-center gap-4">
         <%= link_to new_contact_path, data: { turbo_frame: "modal" }, class: "inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#E23D5B] hover:bg-[#C7304C] text-white font-semibold text-sm transition-colors" do %>
